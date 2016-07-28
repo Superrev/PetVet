@@ -11,7 +11,14 @@
     <title>new owner</title>
 </head>
 <body>
-new pet
-
+Add Owner
+<br><br>
+<form name="newOwnerForm" method="POST" action="/mvc_cust/saveNewOwner">
+    First Name: <input type="text" name="firstname" /><br>
+    Last Name: <input type="text" name="lastname" /><br>
+    Phone: <input type="text" name="phone" /><br>
+    Address: <input type="text" name="address" /><br>
+    <input type="submit">
+</form>
 </body>
 </html>

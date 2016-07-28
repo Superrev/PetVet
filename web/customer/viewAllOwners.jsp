@@ -5,6 +5,7 @@
   Time: 10:53 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,7 +24,8 @@
     </tr>
     <c:forEach items="${owners}" var="owner">
         <tr>
-            <td><a href="/mvc_cust/viewOwner?ownerid=${owner.ownerId}"><c:out value="${owner.ownerId}" /></a><            <td><c:out value="${owner.firstName}" /></td>
+            <td><a href="/mvc_cust/viewOwner?ownerid=${owner.ownerId}"><c:out value="${owner.ownerId}" /></a><
+            <td><c:out value="${owner.firstName}" /></td>
             <td><c:out value="${owner.lastName}" /></td>
             <td><c:out value="${owner.phone}" /></td>
             <td><c:out value="${owner.address}" /></td>

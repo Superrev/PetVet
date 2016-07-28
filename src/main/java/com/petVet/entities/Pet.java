@@ -2,6 +2,8 @@ package com.petVet.entities;
 
 
 public class Pet {
+
+
     public static enum PetType { DOG, CAT, FISH, BIRD };
 
     private String petId;
