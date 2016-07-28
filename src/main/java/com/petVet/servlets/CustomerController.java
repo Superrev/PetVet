@@ -16,6 +16,7 @@ public class CustomerController extends HttpServlet {
 
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
+
         String uri = request.getRequestURI();
         System.out.println("Requested URI: " + uri);
 
@@ -33,6 +34,7 @@ public class CustomerController extends HttpServlet {
 
             // TODO: do something here
         } else if (jspName.equalsIgnoreCase("addNewPet")) {
+            request.setAttribute("petTypes", Pet.PetType.values());
 
         } else if (jspName.equalsIgnoreCase("editPet")) {
             String petId = request.getParameter("petid");
@@ -76,20 +78,19 @@ public class CustomerController extends HttpServlet {
             jspName = "viewAllOwners";
         } else if (jspName.equalsIgnoreCase("saveNewPet")){
             Pet saveNewPet = new Pet();
-            saveNewPet.setPetId(request.getParameter("petid"));
             saveNewPet.setName(request.getParameter("name"));
-            saveNewPet.setPetType(request.getParameter("pettype"));
             saveNewPet.setOwnerId(request.getParameter("ownerid"));
-            saveNewPet.setOwnerId(System.currentTimeMillis()+"-"+saveNewPet.getPetId().charAt(0)+saveNewPet.getName().charAt(0));
+            saveNewPet.setPetType(Pet.PetType.valueOf(request.getParameter("pettype")));
+            saveNewPet.setPetId(System.currentTimeMillis()+"-"+saveNewPet.getName().charAt(0));
             DataCacheJson.setPet(saveNewPet);
-            jspName = "viewAllOwners";
+            jspName = "viewAllPets";
 
         } else if (jspName.equalsIgnoreCase("updatePet")) {
             String petId = request.getParameter("petid");
             Pet updatePet = DataCacheJson.getPet(petId);
             updatePet.setPetId(request.getParameter("petid"));
             updatePet.setName(request.getParameter("name"));
-            updatePet.setPetType(request.getParameter("pettype"));
+            updatePet.setPetType(Pet.PetType.valueOf(request.getParameter("pettype")));
             updatePet.setOwnerId(request.getParameter("ownerid"));
             DataCacheJson.setPet(updatePet);
             jspName = "viewAllPet";

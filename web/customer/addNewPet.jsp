@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Superduo
@@ -18,11 +19,16 @@
 <%--this.ownerId = ownerId;--%>
 Add Pet
 <br><br>
-<form name="newPetForm" method="POST" action="/mvc_cust/saveNewPet">
-    First Name: <input type="text" name="petid" /><br>
-    Last Name: <input type="text" name="name" /><br>
-    Phone: <input type="text" name="pettype" /><br>
-    Address: <input type="text" name="ownerid" /><br>
+
+<form name="newOwnerForm" method="POST" action="/mvc_cust/saveNewPet">
+    Name: <input type="text" name="name" /><br>
+    Pet Type: <select name="pettype">
+    <c:forEach var="ptype" items="${petTypes}">
+        <option value="<c:out value="${ptype}"/>"><c:out value="${ptype}"/></option>
+    </c:forEach>
+</select><br>
+    Owner Id: <input type="text" name="ownerid" /><br>
     <input type="submit">
-</form></body>
+</form>
+</body>
 </html>
